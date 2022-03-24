@@ -1,9 +1,13 @@
 package com.proj.fab.estudemais;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import android.widget.FrameLayout;
+
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -11,6 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -50,13 +55,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private AppBarConfiguration mAppBarConfiguration;
     //private ActivityMain2Binding binding;
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        Toolbar toolbar2 = findViewById(R.id.toolbar);
-        toolbar2.setTitle("Exame");
-        setSupportActionBar(toolbar2);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Exame");
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar,R.string.openDrawer, R.string.openDrawer);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+
+
        // binding = ActivityMain2Binding.inflate(getLayoutInflater());
         //setContentView(binding.getRoot());
 
