@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/drawable/main_background.xml" value="0.2203125" />
+        <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/drawable/round_corner_button.xml" value="0.2203125" />
+        <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/activity_main2.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/app_bar_main2.xml" value="0.22520852641334568" />
