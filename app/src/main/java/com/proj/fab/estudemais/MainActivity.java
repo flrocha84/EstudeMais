@@ -71,20 +71,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
 
-
-       // binding = ActivityMain2Binding.inflate(getLayoutInflater());
-        //setContentView(binding.getRoot());
-
         bottomNavigationView = findViewById(R.id.bottom_nav_bar);
         main_frame = findViewById(R.id.main_frame);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
-
-
-
-      //  DrawerLayout drawer = binding.drawerLayout;
-
-
 
         setFragment(new CategoryFragment());
     }
