@@ -17,4 +17,5 @@
     <string name="openDrawer">Open Nav</string>
 
     <string name="open">1</string>
+    <string name="default_web_client_id2">login do google</string>
 </resources>
