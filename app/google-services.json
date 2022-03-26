@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1030848788394",
+    "project_id": "estudemais-6d8b0",
+    "storage_bucket": "estudemais-6d8b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030848788394:android:16c5dbb845c1a834311dd3",
+        "android_client_info": {
+          "package_name": "com.proj.fab.estudemais"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1030848788394-rveeearmb8sofedk32jbq6mnis79512n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.proj.fab.estudemais",
+            "certificate_hash": "067ff24125c07f1aac4eba8b1369d0c70431e463"
+          }
+        },
+        {
+          "client_id": "1030848788394-tpikm03mtd5opuatl3uosh5vqd30r1b5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqYF-vRlavLVm2RodLIOn86Ub0-GXlkHk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1030848788394-tpikm03mtd5opuatl3uosh5vqd30r1b5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
