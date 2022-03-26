@@ -18,4 +18,5 @@
 
     <string name="open">1</string>
     <string name="default_web_client_id2">login do google</string>
+    <string name="default_web_client_id3">denovo</string>
 </resources>
