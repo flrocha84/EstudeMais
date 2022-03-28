@@ -130,10 +130,24 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this,"Login realizado!",Toast.LENGTH_SHORT).show();
 
-                            progressDialog.dismiss();
-                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                            startActivity(intent);
-                            finish();
+                            DbQuery.loadCategories(new MyCompleteListener() {
+                                @Override
+                                public void onSuccess() {
+                                    progressDialog.dismiss();
+                                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+
+                                @Override
+                                public void onFailure() {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(LoginActivity.this,"Something went wrong! Please try again",Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+
+
 
                         } else {
                             progressDialog.dismiss();
@@ -179,10 +193,60 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this,"Logado com sucesso!",Toast.LENGTH_SHORT).show();
 
                             FirebaseUser user = mAuth.getCurrentUser();
-                            progressDialog.dismiss();
-                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                            startActivity(intent);
-                            LoginActivity.this.finish();
+                            if (task.getResult().getAdditionalUserInfo().isNewUser())
+                            {
+                                DbQuery.createUserData(user.getEmail(), user.getDisplayName(), new MyCompleteListener() {
+                                    @Override
+                                    public void onSuccess() {
+
+                                        DbQuery.loadCategories(new MyCompleteListener() {
+                                            @Override
+                                            public void onSuccess() {
+                                                progressDialog.dismiss();
+                                                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                                                startActivity(intent);
+                                                LoginActivity.this.finish();
+                                            }
+
+                                            @Override
+                                            public void onFailure() {
+                                                    progressDialog.dismiss();
+                                                    Toast.makeText(LoginActivity.this,"Something went wrong! Please try again",Toast.LENGTH_SHORT).show();
+
+                                            }
+                                        });
+
+
+                                    }
+
+                                    @Override
+                                    public void onFailure() {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(LoginActivity.this,"Something went wrong! Please try again",Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                            else
+                            {
+                                DbQuery.loadCategories(new MyCompleteListener() {
+                                    @Override
+                                    public void onSuccess() {
+                                        progressDialog.dismiss();
+                                        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                                        startActivity(intent);
+                                        LoginActivity.this.finish();
+
+                                    }
+
+                                    @Override
+                                    public void onFailure() {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(LoginActivity.this,"Something went wrong! Please try again",Toast.LENGTH_SHORT).show();
+
+
+                                    }
+                                });
+                            }
 
                         } else {
                             progressDialog.dismiss();

@@ -123,10 +123,23 @@ public class SignUpActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess()
                                 {
-                                    progressDialog.dismiss();
-                                    Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
-                                    startActivity(intent);
-                                    SignUpActivity.this.finish();
+                                    DbQuery.loadCategories(new MyCompleteListener() {
+                                        @Override
+                                        public void onSuccess() {
+                                            progressDialog.dismiss();
+                                            Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
+                                            startActivity(intent);
+                                            SignUpActivity.this.finish();
+                                        }
+
+                                        @Override
+                                        public void onFailure() {
+                                            Toast.makeText(SignUpActivity.this,"Something went wrong! Please try again",Toast.LENGTH_SHORT).show();
+                                            progressDialog.dismiss();
+                                        }
+                                    });
+
+
                                 }
                                 @Override
                                 public void onFailure()

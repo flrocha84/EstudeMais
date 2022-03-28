@@ -2,21 +2,21 @@ package com.proj.fab.estudemais;
 
 public class CategoryModel {
 
-    private int docId;
+    private String docId;
     private String name;
     private int noOfTests;
 
-    public CategoryModel(int docId, String name, int noOfTests) {
+    public CategoryModel(String docId, String name, int noOfTests) {
         this.docId = docId;
         this.name = name;
         this.noOfTests = noOfTests;
     }
 
-    public Integer getDocId() {
+    public String getDocId() {
         return docId;
     }
 
-    public void setDocId(Integer docId) {
+    public void setDocId(String docId) {
         this.docId = docId;
     }
 
