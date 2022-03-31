@@ -8,7 +8,7 @@
     tools:context=".StartTestActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/st_cat_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/st_test_no"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -66,12 +66,12 @@
                 android:orientation="vertical"
                 android:paddingTop="16dp">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginBottom="8dp"
-                android:layout_gravity="center"
-                android:src="@drawable/pergunta"/>
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="26dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/pergunta" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -85,6 +85,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/st_total_ques"
                     android:text="5"
                     android:layout_weight="1"
                     android:gravity="bottom"
@@ -138,6 +139,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/st_best_score"
                     android:text="80"
                     android:layout_weight="1"
                     android:gravity="bottom"
@@ -191,6 +193,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/st_time"
                     android:text="25 m"
                     android:layout_weight="1"
                     android:gravity="bottom"
@@ -239,6 +242,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/st_backB"
         android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="16dp"

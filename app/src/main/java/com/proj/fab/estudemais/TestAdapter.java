@@ -51,13 +51,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
             topScore=itemView.findViewById(R.id.scoretext);
             progressBar=itemView.findViewById(R.id.testProgressbar);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(itemView.getContext(),QuestionsActivity.class);
-                    itemView.getContext().startActivity(intent);
-                }
-            });
+
 
         }
         private void setData(int pos, int progress)
@@ -66,6 +60,18 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
             topScore.setText(String.valueOf(progress) + "%");
 
             progressBar.setProgress(progress);
+
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    DbQuery.g_selected_test_index= pos;
+
+                    Intent intent = new Intent(itemView.getContext(),StartTestActivity.class);
+                    itemView.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }
