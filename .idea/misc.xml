@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/drawable-anydpi/ic_back.xml" value="0.215625" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/drawable-anydpi/ic_bookmark.xml" value="0.215625" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/drawable-anydpi/ic_left.xml" value="0.215625" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/drawable-anydpi/ic_right.xml" value="0.215625" />
@@ -16,6 +17,7 @@
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/activity_questions.xml" value="0.22" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/activity_sign_up.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/activity_splash.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/activity_start_test.xml" value="0.33" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/activity_test.xml" value="0.1" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/app_bar_main2.xml" value="0.22520852641334568" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/cat_item_layout.xml" value="0.20416666666666666" />
