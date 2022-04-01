@@ -24,6 +24,7 @@ public class QuestionsActivity extends AppCompatActivity {
     private ImageButton prevQuesB, nextQuesB;
     private ImageView quesListB;
     private int quesID;
+    QuestionsAdapter quesAdapter;
 
 
 
@@ -35,7 +36,7 @@ public class QuestionsActivity extends AppCompatActivity {
 
         init();
 
-        QuestionsAdapter quesAdapter = new QuestionsAdapter(DbQuery.g_quesList);
+        quesAdapter = new QuestionsAdapter(DbQuery.g_quesList);
         questionsView.setAdapter(quesAdapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -117,6 +118,13 @@ public class QuestionsActivity extends AppCompatActivity {
                 }
 
 
+            }
+        });
+        clearSelB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DbQuery.g_quesList.get(quesID).setSelectedAns(-1);
+                quesAdapter.notifyDataSetChanged();
             }
         });
 
