@@ -1,5 +1,10 @@
 package com.proj.fab.estudemais;
 
+import static com.proj.fab.estudemais.DbQuery.ANSWERED;
+import static com.proj.fab.estudemais.DbQuery.REVIEW;
+import static com.proj.fab.estudemais.DbQuery.UNANSWERED;
+import static com.proj.fab.estudemais.DbQuery.g_quesList;
+
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,6 +105,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
               btn.setBackgroundResource(R.drawable.selected_bt);
               DbQuery.g_quesList.get(quesID).setSelectedAns(option_num);
 
+              changeStatus(quesID,ANSWERED);
               prevSelectedB=btn;
             }
             else
@@ -109,6 +115,7 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
                         btn.setBackgroundResource(R.drawable.unselected_bt);
                         DbQuery.g_quesList.get(quesID).setSelectedAns(-1);
 
+                        changeStatus(quesID,UNANSWERED);
                         prevSelectedB = null;
                     }
                     else {
@@ -117,11 +124,21 @@ public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.View
 
                         DbQuery.g_quesList.get(quesID).setSelectedAns(option_num);
 
+                        changeStatus(quesID,ANSWERED);
                         prevSelectedB = btn;
                     }
                 }
 
         }
+
+        private void changeStatus(int id, int status)
+        {
+            if (g_quesList.get(id).getStatus() != REVIEW)
+            {
+                g_quesList.get(id).setStatus(status);
+            }
+        }
+
 
         private void setOption(Button btn, int option_num, int quesID)
         {

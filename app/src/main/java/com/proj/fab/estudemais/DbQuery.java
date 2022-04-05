@@ -18,15 +18,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
+
 public class DbQuery {
+
    public static FirebaseFirestore g_firestore;
    public static List<CategoryModel> g_catList=new ArrayList<>();
-    public static int g_selected_cat_index = 0;
+   public static int g_selected_cat_index = 0;
+
    public static List<TestModel> g_testlist = new ArrayList<>();
    public static int g_selected_test_index = 0;
+
    public static List<QuestionModel> g_quesList = new ArrayList<>();
 
    public static ProfileModel myProfile = new ProfileModel("NA",null);
+
+    public static final int NOT_VISITED =0;
+    public static final int UNANSWERED =1;
+    public static final int ANSWERED =2;
+    public static final int REVIEW =3;
+
 
 
    public static void createUserData(String email, String name, MyCompleteListener completeListener)
@@ -133,7 +144,8 @@ public class DbQuery {
                                  doc.getString("C"),
                                  doc.getString("D"),
                                  doc.getLong("ANSWER").intValue(),
-                                        -1
+                                        -1,
+                                        NOT_VISITED
                                 ));
                             }
                             completeListener.onSuccess();
