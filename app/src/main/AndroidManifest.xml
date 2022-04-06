@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExamPractice">
         <activity
+            android:name="com.ScoreActivity"
+            android:exported="false" />
+        <activity
             android:name=".StartTestActivity"
             android:exported="false" />
         <activity
