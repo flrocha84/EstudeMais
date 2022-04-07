@@ -1,4 +1,4 @@
-package com;
+package com.proj.fab.estudemais;
 
 import androidx.appcompat.app.AppCompatActivity;
 
