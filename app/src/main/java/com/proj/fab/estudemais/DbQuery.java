@@ -13,6 +13,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.WriteBatch;
+import com.proj.fab.estudemais.Models.CategoryModel;
+import com.proj.fab.estudemais.Models.ProfileModel;
+import com.proj.fab.estudemais.Models.QuestionModel;
+import com.proj.fab.estudemais.Models.RankModel;
+import com.proj.fab.estudemais.Models.TestModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +37,7 @@ public class DbQuery {
    public static List<QuestionModel> g_quesList = new ArrayList<>();
 
    public static ProfileModel myProfile = new ProfileModel("NA",null);
+   public static RankModel myPerformace = new RankModel(0,-1);
 
     public static final int NOT_VISITED =0;
     public static final int UNANSWERED =1;
@@ -77,6 +83,7 @@ public class DbQuery {
                    public void onSuccess(DocumentSnapshot documentSnapshot) {
                     myProfile.setName(documentSnapshot.getString("NAME"));
                     myProfile.setEmail(documentSnapshot.getString("EMAIL_ID"));
+                    myPerformace.setScore(documentSnapshot.getLong("TOTAL_SCORE").intValue());
                     completeListener.onSuccess();
                    }
                }).addOnFailureListener(new OnFailureListener() {
@@ -85,6 +92,36 @@ public class DbQuery {
                 completeListener.onFailure();
            }
        });
+   }
+
+   public static void saveResult(int score, MyCompleteListener completeListener)
+   {
+       WriteBatch batch=g_firestore.batch();
+       DocumentReference userDoc=g_firestore.collection("USERS").document(FirebaseAuth.getInstance().getUid());
+       batch.update(userDoc,"TOTAL_SCORE",score);
+
+       if (score > g_testlist.get(g_selected_test_index).getTopScore())
+       {
+
+           DocumentReference scoreDoc = userDoc.collection("USER_DATA").document("MY_SCORES");
+           batch.update(scoreDoc,g_testlist.get(g_selected_test_index).getTestID(),score);
+       }
+            batch.commit().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    if (score > g_testlist.get(g_selected_test_index).getTopScore())
+                   g_testlist.get(g_selected_test_index).setTopScore(score);
+                    myPerformace.setScore(score);
+                    completeListener.onSuccess();
+
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    completeListener.onFailure();
+                }
+            });
    }
 
     public static void loadCategories(final MyCompleteListener completeListener)

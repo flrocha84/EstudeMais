@@ -1,4 +1,4 @@
-package com.proj.fab.estudemais;
+package com.proj.fab.estudemais.Adapters;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -6,6 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.proj.fab.estudemais.DbQuery;
+import com.proj.fab.estudemais.Models.CategoryModel;
+import com.proj.fab.estudemais.R;
+import com.proj.fab.estudemais.TestActivity;
 
 import java.util.List;
 
@@ -45,7 +50,7 @@ public class CategoryAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 DbQuery.g_selected_cat_index = i;
-                Intent intent = new Intent(view.getContext(),TestActivity.class);
+                Intent intent = new Intent(view.getContext(), TestActivity.class);
 
                 view.getContext().startActivity(intent);
             }

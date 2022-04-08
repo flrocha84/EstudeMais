@@ -1,4 +1,4 @@
-package com.proj.fab.estudemais;
+package com.proj.fab.estudemais.Models;
 
 public class QuestionModel {
 

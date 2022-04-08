@@ -1,4 +1,4 @@
-package com.proj.fab.estudemais;
+package com.proj.fab.estudemais.Adapters;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,6 +9,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.proj.fab.estudemais.DbQuery;
+import com.proj.fab.estudemais.Models.TestModel;
+import com.proj.fab.estudemais.R;
+import com.proj.fab.estudemais.StartTestActivity;
 
 import java.util.List;
 
@@ -68,7 +73,7 @@ public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
 
                     DbQuery.g_selected_test_index= pos;
 
-                    Intent intent = new Intent(itemView.getContext(),StartTestActivity.class);
+                    Intent intent = new Intent(itemView.getContext(), StartTestActivity.class);
                     itemView.getContext().startActivity(intent);
                 }
             });

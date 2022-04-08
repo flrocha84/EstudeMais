@@ -5,6 +5,8 @@ import static com.proj.fab.estudemais.DbQuery.NOT_VISITED;
 import static com.proj.fab.estudemais.DbQuery.REVIEW;
 import static com.proj.fab.estudemais.DbQuery.UNANSWERED;
 import static com.proj.fab.estudemais.DbQuery.g_quesList;
+import static com.proj.fab.estudemais.DbQuery.g_selected_test_index;
+import static com.proj.fab.estudemais.DbQuery.g_testlist;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -26,6 +28,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.proj.fab.estudemais.Adapters.QuestionGridAdapter;
+import com.proj.fab.estudemais.Adapters.QuestionsAdapter;
+
 import java.util.concurrent.TimeUnit;
 
 public class QuestionsActivity extends AppCompatActivity {
@@ -42,9 +47,7 @@ public class QuestionsActivity extends AppCompatActivity {
     private ImageView markImageB;
     private QuestionGridAdapter gridAdapter;
     private CountDownTimer timer;
-
-
-
+    private long timeLeft;
 
 
 
@@ -260,6 +263,8 @@ public class QuestionsActivity extends AppCompatActivity {
                 alertDialog.dismiss();
 
                 Intent intent = new Intent(QuestionsActivity.this, ScoreActivity.class);
+                long totaltime= g_testlist.get(g_selected_test_index).getTime()*60*1000;
+                intent.putExtra("TIME_TAKEN",totaltime-timeLeft);
                 startActivity(intent);
                 QuestionsActivity.this.finish();
             }
@@ -284,6 +289,8 @@ public class QuestionsActivity extends AppCompatActivity {
             @Override
             public void onTick(long remainingTime) {
 
+                timeLeft=remainingTime;
+
                 String time =String.format("%02d:%02d min",
                         TimeUnit.MILLISECONDS.toMinutes(remainingTime),
                         TimeUnit.MILLISECONDS.toSeconds(remainingTime)-
@@ -297,6 +304,8 @@ public class QuestionsActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 Intent intent = new Intent(QuestionsActivity.this, ScoreActivity.class);
+                long totaltime= g_testlist.get(g_selected_test_index).getTime()*60*1000;
+                intent.putExtra("TIME_TAKEN",totaltime-timeLeft);
                 startActivity(intent);
                 QuestionsActivity.this.finish();
             }

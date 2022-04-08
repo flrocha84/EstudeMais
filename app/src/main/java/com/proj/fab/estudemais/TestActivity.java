@@ -13,8 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.proj.fab.estudemais.Adapters.TestAdapter;
 
 public class TestActivity extends AppCompatActivity {
 

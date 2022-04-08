@@ -1,4 +1,4 @@
-package com.proj.fab.estudemais;
+package com.proj.fab.estudemais.Adapters;
 
 import static com.proj.fab.estudemais.DbQuery.ANSWERED;
 import static com.proj.fab.estudemais.DbQuery.NOT_VISITED;
@@ -14,6 +14,10 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+
+import com.proj.fab.estudemais.DbQuery;
+import com.proj.fab.estudemais.QuestionsActivity;
+import com.proj.fab.estudemais.R;
 
 public class QuestionGridAdapter extends BaseAdapter {
 

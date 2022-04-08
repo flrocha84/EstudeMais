@@ -1,11 +1,10 @@
-package com.proj.fab.estudemais;
+package com.proj.fab.estudemais.Adapters;
 
 import static com.proj.fab.estudemais.DbQuery.ANSWERED;
 import static com.proj.fab.estudemais.DbQuery.REVIEW;
 import static com.proj.fab.estudemais.DbQuery.UNANSWERED;
 import static com.proj.fab.estudemais.DbQuery.g_quesList;
 
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.proj.fab.estudemais.DbQuery;
+import com.proj.fab.estudemais.Models.QuestionModel;
+import com.proj.fab.estudemais.R;
+
 import java.util.List;
 
 public class QuestionsAdapter extends RecyclerView.Adapter<QuestionsAdapter.ViewHolder>  {
