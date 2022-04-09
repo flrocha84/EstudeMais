@@ -38,6 +38,7 @@
         <TextView
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:id="@+id/profile_text"
             android:gravity="center"
             android:text="A"
             android:layout_marginBottom="16dp"
@@ -168,6 +169,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/button_layout"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -177,6 +179,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/cancelB"
             android:text="Cancelar"
             android:background="@color/colorPrimary"
             android:layout_weight="1"
@@ -192,6 +195,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/saveB"
             android:text="Salvar"
             android:background="@color/colorPrimary"
             android:layout_weight="1"

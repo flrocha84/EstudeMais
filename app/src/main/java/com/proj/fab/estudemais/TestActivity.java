@@ -46,7 +46,7 @@ public class TestActivity extends AppCompatActivity {
         progressDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
 
         dialogText=progressDialog.findViewById(R.id.dialog_text);
-        dialogText.setText("Carregando...");
+        dialogText.setText(" Carregando...");
 
         progressDialog.show();
 
