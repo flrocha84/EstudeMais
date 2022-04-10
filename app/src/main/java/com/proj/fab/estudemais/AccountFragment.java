@@ -1,5 +1,10 @@
 package com.proj.fab.estudemais;
 
+import static com.proj.fab.estudemais.DbQuery.g_usersCount;
+import static com.proj.fab.estudemais.DbQuery.g_usersList;
+import static com.proj.fab.estudemais.DbQuery.myPerformace;
+
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -29,6 +35,8 @@ public class AccountFragment extends Fragment {
     private TextView profile_img_text,name,score,rank;
     private LinearLayout leaderB,profileB, bookmarkB;
     private BottomNavigationView bottomNavigationView;
+    private Dialog progressDialog;
+    private TextView dialogText;
 
 
 
@@ -45,6 +53,18 @@ public class AccountFragment extends Fragment {
         Toolbar toolbar =getActivity().findViewById(R.id.toolbar);
         ((MainActivity)getActivity()).getSupportActionBar().setTitle("Meu Perfil");
 
+
+        progressDialog=new Dialog(getContext());
+        progressDialog.setContentView(R.layout.dialog_layout);
+        progressDialog.setCancelable(false);
+        progressDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        dialogText=progressDialog.findViewById(R.id.dialog_text);
+        dialogText.setText(" Carregando...");
+
+
+
+
         String userName = DbQuery.myProfile.getName();
         profile_img_text.setText(userName.toUpperCase().substring(0,1));
 
@@ -52,7 +72,41 @@ public class AccountFragment extends Fragment {
 
         score.setText(String.valueOf(DbQuery.myPerformace.getScore()));
 
+        if (DbQuery.g_usersList.size()==0)
+        {
+            progressDialog.show();
+            DbQuery.getTopUsers(new MyCompleteListener() {
+                @Override
+                public void onSuccess() {
 
+                    if (DbQuery.myPerformace.getScore() !=0)
+                    {
+                        if (! DbQuery.isMeOnTopList)
+                        {
+                            calculateRank();
+                        }
+                        score.setText("Pontuação: "+ DbQuery.myPerformace.getScore());
+                        rank.setText("Classificação - "+DbQuery.myPerformace.getRank() );
+                    }
+                    progressDialog.dismiss();
+                }
+
+                @Override
+                public void onFailure() {
+                    Toast.makeText(getContext(),"Something went wrong! Please try again",Toast.LENGTH_SHORT).show();
+
+                    progressDialog.dismiss();
+
+                }
+            });
+
+        }
+        else
+        {
+            score.setText("Pontuação: "+ DbQuery.myPerformace.getScore());
+            if (myPerformace.getScore() !=0)
+            rank.setText("Classificação - "+DbQuery.myPerformace.getRank() );
+        }
 
 
 
@@ -118,5 +172,24 @@ public class AccountFragment extends Fragment {
         bottomNavigationView=getActivity().findViewById(R.id.bottom_nav_bar);
 
 
+    }
+
+    private void calculateRank()
+    {
+        int lowTopScore = g_usersList.get(g_usersList.size()-1).getScore();
+        int remaining_slots = g_usersCount -20 ;
+        int myslot = (myPerformace.getScore()*remaining_slots)/lowTopScore;
+        int rank;
+
+        if (lowTopScore != myPerformace.getScore())
+        {
+            rank = g_usersCount -myslot;
+        }
+        else
+        {
+            rank=21;
+        }
+
+        myPerformace.setRank(rank);
     }
 }

@@ -45,7 +45,7 @@ public class DbQuery {
    public static boolean isMeOnTopList =false;
 
    public static ProfileModel myProfile = new ProfileModel("NA",null,null);
-   public static RankModel myPerformace = new RankModel(null,0,-1);
+   public static RankModel myPerformace = new RankModel("NULL",0,-1);
 
     public static final int NOT_VISITED =0;
     public static final int UNANSWERED =1;
@@ -129,6 +129,7 @@ public class DbQuery {
                     myProfile.setPhone(documentSnapshot.getString("PHONE"));
 
                     myPerformace.setScore(documentSnapshot.getLong("TOTAL_SCORE").intValue());
+                    myPerformace.setName(documentSnapshot.getString("NAME"));
                     completeListener.onSuccess();
                    }
                }).addOnFailureListener(new OnFailureListener() {
@@ -229,7 +230,7 @@ public class DbQuery {
                    public void onFailure(@NonNull Exception e) {
                         completeListener.onFailure();
                    }
-               })
+               });
 
    }
 
