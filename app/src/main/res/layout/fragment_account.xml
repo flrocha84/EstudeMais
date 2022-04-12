@@ -103,7 +103,7 @@
                 android:id="@+id/rank"
                 android:layout_marginTop="8dp"
                 android:text="NA"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:textColor="@color/colorPrimary"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -130,7 +130,7 @@
                 android:id="@+id/total_score"
                 android:layout_marginTop="8dp"
                 android:text="0"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:textColor="@color/colorPrimary"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -269,7 +269,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Desconectar"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
                     />
             </LinearLayout>
         </LinearLayout>

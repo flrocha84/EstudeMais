@@ -93,7 +93,7 @@ public class AccountFragment extends Fragment {
 
                 @Override
                 public void onFailure() {
-                    Toast.makeText(getContext(),"Something went wrong! Please try again",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"Erro. Tente mais tarde.",Toast.LENGTH_SHORT).show();
 
                     progressDialog.dismiss();
 

@@ -17,6 +17,7 @@
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/drawable/round_view.xml" value="0.2203125" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/drawable/selected_bt.xml" value="0.215625" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/drawable/unselected_bt.xml" value="0.215625" />
+        <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/activity_answers.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/activity_main2.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/activity_my_profile.xml" value="0.20416666666666666" />
@@ -27,6 +28,7 @@
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/activity_start_test.xml" value="0.25" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/activity_test.xml" value="0.1" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/alert_dialog_layout.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/answer_item_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/app_bar_main2.xml" value="0.22520852641334568" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/cat_item_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/fabio/EstudeMais/app/src/main/res/layout/content_main2.xml" value="0.22" />
