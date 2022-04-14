@@ -39,6 +39,7 @@ public class DbQuery {
    public static int g_selected_test_index = 0;
 
    public static List<String> g_bmIdList = new ArrayList<>();
+   public static List<QuestionModel> g_bookmarksList = new ArrayList<>();
 
    public static List<QuestionModel> g_quesList = new ArrayList<>();
 
@@ -53,6 +54,8 @@ public class DbQuery {
     public static final int UNANSWERED =1;
     public static final int ANSWERED =2;
     public static final int REVIEW =3;
+
+    static int tmp;
 
 
 
@@ -203,6 +206,55 @@ public class DbQuery {
                 });
    }
 
+   public static void loadBookmarks(MyCompleteListener completeListener)
+   {
+       g_bookmarksList.clear();
+      tmp=0;
+
+      if (g_bmIdList.size() ==0)
+          completeListener.onSuccess();
+
+       for (int i=0; i< g_bmIdList.size();i++)
+       {
+           String docID= g_bmIdList.get(i);
+           g_firestore.collection("Questions").document(docID)
+                   .get()
+                   .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                       @Override
+                       public void onSuccess(DocumentSnapshot documentSnapshot) {
+                           if (documentSnapshot.exists())
+                           {
+                               g_bookmarksList.add(new QuestionModel(
+                                       documentSnapshot.getId(),
+                                       documentSnapshot.getString("QUESTION"),
+                                       documentSnapshot.getString("A"),
+                                       documentSnapshot.getString("B"),
+                                       documentSnapshot.getString("C"),
+                                       documentSnapshot.getString("D"),
+                                       documentSnapshot.getLong("ANSWER").intValue(),
+                                       0,
+                                       -1,
+                                       false
+
+
+                               ));
+                           }
+                           tmp++;
+                           if (tmp ==g_bmIdList.size())
+                           {
+                               completeListener.onSuccess();
+                           }
+                       }
+                   })
+                   .addOnFailureListener(new OnFailureListener() {
+                       @Override
+                       public void onFailure(@NonNull Exception e) {
+                        completeListener.onFailure();
+                       }
+                   });
+       }
+
+   }
 
    public static void getTopUsers(MyCompleteListener completeListener)
    {

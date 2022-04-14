@@ -2,6 +2,7 @@ package com.proj.fab.estudemais;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -110,6 +111,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if ((id == R.id.nav_leaderboard)) {
             setFragment(new LeaderBoardFragment());
         }
+        else  if (id==R.id.nav_bookmark)
+        {
+            Intent intent = new Intent(MainActivity.this,BookmarksActivity.class);
+            startActivity(intent);
+        }
+
+
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
