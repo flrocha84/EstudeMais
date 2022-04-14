@@ -32,6 +32,8 @@ public class ScoreActivity extends AppCompatActivity {
     private Dialog progressDialog;
     private TextView dialogText;
     private int finalScore;
+    private BottomNavigationView bottomNavigationView;
+
 
 
 
@@ -100,7 +102,7 @@ public class ScoreActivity extends AppCompatActivity {
         correctQTV=findViewById(R.id.correctQ);
         wrongQTV=findViewById(R.id.wrongQ);
         unattemptedQTV=findViewById(R.id.un_attempted);
-        leaderB=findViewById(R.id.leaderB);
+        leaderB=findViewById(R.id.leaderB1);
         reAttemptB=findViewById(R.id.reattemptB);
         viewAnsB=findViewById(R.id.view_answerB);
 

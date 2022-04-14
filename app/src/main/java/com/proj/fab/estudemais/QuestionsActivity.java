@@ -28,6 +28,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.proj.fab.estudemais.Adapters.QuestionGridAdapter;
 import com.proj.fab.estudemais.Adapters.QuestionsAdapter;
 
@@ -56,6 +59,7 @@ public class QuestionsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.questions_list_layout);
+
 
 
         init();

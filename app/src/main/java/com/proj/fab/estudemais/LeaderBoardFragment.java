@@ -76,7 +76,7 @@ public class LeaderBoardFragment extends Fragment {
                         calculateRank();
                     }
                     myScoreTV.setText("Pontuação: "+ DbQuery.myPerformace.getScore());
-                    myRankTV.setText("Classificação - "+DbQuery.myPerformace.getRank() );
+                    myRankTV.setText("Classificação: "+DbQuery.myPerformace.getRank() +"º");
                 }
                 progressDialog.dismiss();
             }

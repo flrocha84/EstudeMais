@@ -297,7 +297,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/leaderB"
+            android:id="@+id/leaderB1"
             android:background="@color/white"
             android:text="Verifique sua classificação no ranking"
             android:drawableRight="@drawable/ic_right"

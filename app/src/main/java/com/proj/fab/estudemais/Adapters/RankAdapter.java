@@ -68,7 +68,7 @@ public class RankAdapter extends RecyclerView.Adapter<RankAdapter.ViewHolder> {
         {
         nameTV.setText(name);
         scoreTV.setText("Pontuação: "+score);
-        rankTV.setText("Posição - "+rank);
+        rankTV.setText("Posição: "+rank+"º");
         imgTV.setText(name.toUpperCase().substring(0,1));
         }
     }

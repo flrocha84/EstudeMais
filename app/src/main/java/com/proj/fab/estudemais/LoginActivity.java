@@ -77,7 +77,13 @@ public class LoginActivity extends AppCompatActivity {
         mGoogleSignInClient= GoogleSignIn.getClient(this,gso);
 
 
-
+        forgotPassB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this,RecuperarSenhaActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         loginB.setOnClickListener(new View.OnClickListener() {
