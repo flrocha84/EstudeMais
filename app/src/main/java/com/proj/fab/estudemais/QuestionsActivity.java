@@ -48,6 +48,7 @@ public class QuestionsActivity extends AppCompatActivity {
     private QuestionGridAdapter gridAdapter;
     private CountDownTimer timer;
     private long timeLeft;
+    private ImageView bookmarkB;
 
 
 
@@ -92,6 +93,7 @@ public class QuestionsActivity extends AppCompatActivity {
         drawer=findViewById(R.id.drawer_layout);
         markImageB=findViewById(R.id.mark_image);
         quesListGV=findViewById(R.id.ques_list_GV);
+        bookmarkB=findViewById(R.id.qa_bookmarkB);
 
         drawerCloseB=findViewById(R.id.drawerCloseB);
 
@@ -101,6 +103,15 @@ public class QuestionsActivity extends AppCompatActivity {
         catNameTV.setText(DbQuery.g_catList.get(DbQuery.g_selected_cat_index).getName());
 
         g_quesList.get(0).setStatus(UNANSWERED);
+
+        if(g_quesList.get(0).isBookmarked())
+        {
+            bookmarkB.setImageResource(R.drawable.ic_bookmark_selected);
+        }
+        else
+        {
+            bookmarkB.setImageResource(R.drawable.ic_bookmark);
+        }
 
     }
 
@@ -132,9 +143,16 @@ public class QuestionsActivity extends AppCompatActivity {
                     markImageB.setVisibility(View.GONE);
                 }
 
-
-
                 tvQuesID.setText(String.valueOf(quesID +1 +"/"+ String.valueOf(g_quesList.size())));
+
+                if(g_quesList.get(quesID).isBookmarked())
+                {
+                    bookmarkB.setImageResource(R.drawable.ic_bookmark_selected);
+                }
+                else
+                {
+                    bookmarkB.setImageResource(R.drawable.ic_bookmark);
+                }
 
             }
 
@@ -232,7 +250,13 @@ public class QuestionsActivity extends AppCompatActivity {
                     submitTest();
                 }
             });
+            bookmarkB.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
+                    addToBookmark();
+                }
+            });
 
     }
 
@@ -312,5 +336,17 @@ public class QuestionsActivity extends AppCompatActivity {
         };
         timer.start();
     }
-
+        private void addToBookmark()
+        {
+            if(g_quesList.get(quesID).isBookmarked())
+            {
+                g_quesList.get(quesID).setBookmarked(false);
+                bookmarkB.setImageResource(R.drawable.ic_bookmark);
+            }
+            else
+            {
+                g_quesList.get(quesID).setBookmarked(true);
+                bookmarkB.setImageResource(R.drawable.ic_bookmark_selected);
+            }
+        }
 }

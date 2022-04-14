@@ -1,7 +1,7 @@
 package com.proj.fab.estudemais.Models;
 
 public class QuestionModel {
-
+    private String qID;
     private String question;
     private String optionA;
     private String optionB;
@@ -11,10 +11,13 @@ public class QuestionModel {
     private int correctAns;
     private int selectedAns;
     private int status;
+    private boolean isBookmarked;
 
 
 
-    public QuestionModel(String question, String optionA, String optionB, String optionC, String optionD, int correctAns,int selectedAns,int status) {
+
+    public QuestionModel(String qID, String question, String optionA, String optionB, String optionC, String optionD, int correctAns,int selectedAns,int status, boolean isBookmarked) {
+        this.qID = qID;
         this.question = question;
         this.optionA = optionA;
         this.optionB = optionB;
@@ -23,6 +26,16 @@ public class QuestionModel {
         this.correctAns = correctAns;
         this.selectedAns=selectedAns;
         this.status=status;
+        this.isBookmarked=isBookmarked;
+
+    }
+
+    public String getqID() {
+        return qID;
+    }
+
+    public void setqID(String qID) {
+        this.qID = qID;
     }
 
     public int getStatus() {
@@ -87,5 +100,13 @@ public class QuestionModel {
 
     public void setCorrectAns(int correctAns) {
         this.correctAns = correctAns;
+    }
+
+    public boolean isBookmarked() {
+        return isBookmarked;
+    }
+
+    public void setBookmarked(boolean bookmarked) {
+        isBookmarked = bookmarked;
     }
 }

@@ -1,8 +1,12 @@
 package com.proj.fab.estudemais;
 
+import static android.app.PendingIntent.getActivity;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -14,6 +18,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.proj.fab.estudemais.Models.QuestionModel;
 import com.proj.fab.estudemais.R;
 
 import java.util.concurrent.TimeUnit;
@@ -29,10 +35,13 @@ public class ScoreActivity extends AppCompatActivity {
 
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
+
 
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -50,9 +59,15 @@ public class ScoreActivity extends AppCompatActivity {
 
 
 
+
+
         init();
 
         loadData();
+
+        setBookMarks();
+
+
 
         viewAnsB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,6 +171,31 @@ public class ScoreActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void setBookMarks()
+    {
+        for (int i=0;i< DbQuery.g_quesList.size();i++)
+        {
+            QuestionModel question = DbQuery.g_quesList.get(i);
+            if (question.isBookmarked())
+            {
+                if ( ! DbQuery.g_bmIdList.contains(question.getqID()))
+                {
+                    DbQuery.g_bmIdList.add(question.getqID());
+                    DbQuery.myProfile.setBookmarkCount(DbQuery.g_bmIdList.size());
+                }
+            }
+            else
+            {
+                if(DbQuery.g_bmIdList.contains(question.getqID()))
+                {
+                    DbQuery.g_bmIdList.remove(question.getqID());
+                    DbQuery.myProfile.setBookmarkCount(DbQuery.g_bmIdList.size());
+                }
+            }
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -165,4 +205,5 @@ public class ScoreActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

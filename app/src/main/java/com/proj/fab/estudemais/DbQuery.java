@@ -38,13 +38,15 @@ public class DbQuery {
    public static List<TestModel> g_testlist = new ArrayList<>();
    public static int g_selected_test_index = 0;
 
+   public static List<String> g_bmIdList = new ArrayList<>();
+
    public static List<QuestionModel> g_quesList = new ArrayList<>();
 
    public static List<RankModel> g_usersList = new ArrayList<>();
    public static int g_usersCount =0;
    public static boolean isMeOnTopList =false;
 
-   public static ProfileModel myProfile = new ProfileModel("NA",null,null);
+   public static ProfileModel myProfile = new ProfileModel("NA",null,null,0);
    public static RankModel myPerformace = new RankModel("NULL",0,-1);
 
     public static final int NOT_VISITED =0;
@@ -61,6 +63,7 @@ public class DbQuery {
       userData.put("EMAIL_ID",email);
       userData.put("NAME",name);
       userData.put("TOTAL_SCORE",0);
+      userData.put("BOOKMARKS",0);
 
       DocumentReference userDoc = g_firestore.collection("USERS").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
       WriteBatch batch = g_firestore.batch();
@@ -128,6 +131,9 @@ public class DbQuery {
                     if (documentSnapshot.getString("PHONE") != null)
                     myProfile.setPhone(documentSnapshot.getString("PHONE"));
 
+                       if (documentSnapshot.get("BOOKMARKS") != null)
+                           myProfile.setBookmarkCount(documentSnapshot.getLong("BOOKMARKS").intValue());
+
                     myPerformace.setScore(documentSnapshot.getLong("TOTAL_SCORE").intValue());
                     myPerformace.setName(documentSnapshot.getString("NAME"));
                     completeListener.onSuccess();
@@ -168,6 +174,35 @@ public class DbQuery {
                    }
                });
    }
+
+   public static void loadBmIds(MyCompleteListener completeListener)
+   {
+        g_bmIdList.clear();
+        g_firestore.collection("USERS").document(FirebaseAuth.getInstance().getUid())
+                .collection("USER_DATA").document("BOOKMARKS")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                        int count = myProfile.getBookmarkCount();
+
+                        for (int i=0;i<count;i++)
+                        {
+                            String bmId=documentSnapshot.getString("BM"+String.valueOf(i+1)+"_ID");
+                            g_bmIdList.add(bmId);
+                        }
+                        completeListener.onSuccess();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        completeListener.onFailure();
+                    }
+                });
+   }
+
 
    public static void getTopUsers(MyCompleteListener completeListener)
    {
@@ -238,8 +273,28 @@ public class DbQuery {
    public static void saveResult(int score, MyCompleteListener completeListener)
    {
        WriteBatch batch=g_firestore.batch();
+
+       //BOOKMARK
+       Map<String, Object> bmData= new ArrayMap<>();
+
+       for (int i=0;i< g_bmIdList.size();i++)
+       {
+           bmData.put("BM"+String.valueOf(i+1)+"_ID",g_bmIdList.get(i));
+       }
+
+       DocumentReference bmDoc = g_firestore.collection("USERS").document(FirebaseAuth.getInstance().getUid())
+               .collection("USER_DATA").document("BOOKMARKS");
+
+       batch.set(bmDoc,bmData);
+
        DocumentReference userDoc=g_firestore.collection("USERS").document(FirebaseAuth.getInstance().getUid());
-       batch.update(userDoc,"TOTAL_SCORE",score);
+
+       Map<String, Object> userData = new ArrayMap<>();
+       userData.put("TOTAL_SCORE",score);
+       userData.put("BOOKMARKS",g_bmIdList.size());
+
+       batch.update(userDoc,userData);
+
 
        if (score > g_testlist.get(g_selected_test_index).getTopScore())
        {
@@ -318,7 +373,12 @@ public class DbQuery {
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             for (DocumentSnapshot doc : queryDocumentSnapshots)
                             {
+                                boolean isBookmarked = false;
+                                if (g_bmIdList.contains(doc.getId()))
+                                    isBookmarked=true;
+
                                 g_quesList.add(new QuestionModel(
+                                        doc.getId(),
                                  doc.getString("QUESTION"),
                                  doc.getString("A"),
                                  doc.getString("B"),
@@ -326,7 +386,8 @@ public class DbQuery {
                                  doc.getString("D"),
                                  doc.getLong("ANSWER").intValue(),
                                         -1,
-                                        NOT_VISITED
+                                        NOT_VISITED,
+                                        isBookmarked
                                 ));
                             }
                             completeListener.onSuccess();
@@ -377,7 +438,17 @@ public class DbQuery {
                     getUserData(new MyCompleteListener() {
                         @Override
                         public void onSuccess() {
-                            getUsersCount(completeListener);
+                            getUsersCount(new MyCompleteListener() {
+                                @Override
+                                public void onSuccess() {
+                                        loadBmIds(completeListener);
+                                }
+
+                                @Override
+                                public void onFailure() {
+                                    completeListener.onFailure();
+                                }
+                            });
                         }
 
                         @Override

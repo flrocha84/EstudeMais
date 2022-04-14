@@ -154,6 +154,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 bottomNavigationView.setSelectedItemId(R.id.navigation_leaderboard);
+
             }
         });
 

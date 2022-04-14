@@ -3,17 +3,17 @@
 <item
     android:id="@+id/navigation_home"
     android:icon="@drawable/ic_home"
-    android:title="Home" />
+    android:title="Inicio" />
 
     <item
         android:id="@+id/navigation_leaderboard"
         android:icon="@drawable/ic_leaderboard"
-        android:title="Leaderboard" />
+        android:title="Ranking" />
 
     <item
         android:id="@+id/navigation_account"
         android:icon="@drawable/ic_account"
-        android:title="My Account" />
+        android:title="Minha Conta" />
 
 
 </menu>

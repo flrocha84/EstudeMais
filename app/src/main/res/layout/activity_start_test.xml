@@ -71,7 +71,7 @@
                     android:layout_height="26dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="8dp"
-                    android:src="@drawable/pergunta" />
+                    android:src="@drawable/ic_perguntas" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                     android:layout_height="24dp"
                     android:layout_marginBottom="8dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/awrd"/>
+                    android:src="@drawable/ic_leaderboard"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -179,7 +179,7 @@
                     android:layout_height="24dp"
                     android:layout_marginBottom="8dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/clock"/>
+                    android:src="@drawable/ic_time"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
