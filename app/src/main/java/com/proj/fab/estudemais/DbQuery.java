@@ -24,6 +24,7 @@ import com.proj.fab.estudemais.Models.RankModel;
 import com.proj.fab.estudemais.Models.TestModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -441,7 +442,9 @@ public class DbQuery {
                                         NOT_VISITED,
                                         isBookmarked
                                 ));
+                                Collections.shuffle(g_quesList);
                             }
+
                             completeListener.onSuccess();
                         }
                     })
@@ -451,6 +454,7 @@ public class DbQuery {
                             completeListener.onFailure();
                         }
                     });
+
     }
 
     public static void loadTestData(MyCompleteListener completeListener)
