@@ -5,10 +5,11 @@ import static android.app.PendingIntent.getActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Dialog;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -27,15 +28,11 @@ import java.util.concurrent.TimeUnit;
 public class ScoreActivity extends AppCompatActivity {
 
     private TextView scoreTV,timeTV,totalQTV,correctQTV,wrongQTV,unattemptedQTV;
-    private Button leaderB,reAttemptB,viewAnsB;
+    private Button voltarB,reAttemptB,viewAnsB;
     private long timeTaken;
     private Dialog progressDialog;
     private TextView dialogText;
     private int finalScore;
-    private BottomNavigationView bottomNavigationView;
-
-
-
 
 
 
@@ -69,7 +66,18 @@ public class ScoreActivity extends AppCompatActivity {
 
         setBookMarks();
 
+        voltarB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveResult();
+                Intent intent = new Intent(ScoreActivity.this,MainActivity.class);
+                startActivity(intent);
 
+
+
+
+            }
+        });
 
         viewAnsB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +110,7 @@ public class ScoreActivity extends AppCompatActivity {
         correctQTV=findViewById(R.id.correctQ);
         wrongQTV=findViewById(R.id.wrongQ);
         unattemptedQTV=findViewById(R.id.un_attempted);
-        leaderB=findViewById(R.id.leaderB1);
+        voltarB=findViewById(R.id.voltarB);
         reAttemptB=findViewById(R.id.reattemptB);
         viewAnsB=findViewById(R.id.view_answerB);
 

@@ -297,12 +297,13 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/leaderB1"
+            android:id="@+id/voltarB"
             android:background="@color/white"
-            android:text="Verifique sua classificação no ranking"
+            android:text="Voltar para tela principal"
             android:drawableRight="@drawable/ic_right"
             android:textColor="@color/colorPrimary"
             android:textSize="15sp"
+            android:textAlignment="center"
 
             android:drawableTint="@color/colorPrimary"
             android:drawablePadding="16dp"
