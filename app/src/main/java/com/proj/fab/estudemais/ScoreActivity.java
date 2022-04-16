@@ -82,7 +82,7 @@ public class ScoreActivity extends AppCompatActivity {
         viewAnsB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                saveResult();
                 Intent intent = new Intent(ScoreActivity.this,AnswersActivity.class);
                 startActivity(intent);
 
@@ -93,6 +93,7 @@ public class ScoreActivity extends AppCompatActivity {
         reAttemptB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                saveResult();
                 reAttempt();
             }
         });

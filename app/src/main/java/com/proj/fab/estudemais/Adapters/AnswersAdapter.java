@@ -39,11 +39,12 @@ public class AnswersAdapter extends RecyclerView.Adapter<AnswersAdapter.ViewHold
         String b =  quesList.get(position).getOptionB();
         String c =  quesList.get(position).getOptionC();
         String d =  quesList.get(position).getOptionD();
+        String sol =quesList.get(position).getSolucao();
         int selected = quesList.get(position).getSelectedAns();
         int ans = quesList.get(position).getCorrectAns();
 
 
-        holder.setData(position,ques,a,b,c,d,selected,ans);
+        holder.setData(position,ques,a,b,c,d,sol,selected,ans);
     }
 
     @Override
@@ -53,7 +54,7 @@ public class AnswersAdapter extends RecyclerView.Adapter<AnswersAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView quesNo , question, optionA, optionB, optionC, optionD, result;
+        private TextView quesNo , question, solucao, optionA, optionB, optionC, optionD, result;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -66,13 +67,14 @@ public class AnswersAdapter extends RecyclerView.Adapter<AnswersAdapter.ViewHold
             optionC=itemView.findViewById(R.id.optionC);
             optionD=itemView.findViewById(R.id.optionD);
             result=itemView.findViewById(R.id.result);
+            solucao=itemView.findViewById(R.id.solucao);
 
 
 
         }
 
 
-        private void setData(int pos , String ques, String a, String b, String c, String d, int selected, int correctAns)
+        private void setData(int pos , String ques, String a, String b, String c, String d, String sol, int selected, int correctAns)
         {
 
             quesNo.setText("Questão número: "+String.valueOf(pos+1));
@@ -81,6 +83,7 @@ public class AnswersAdapter extends RecyclerView.Adapter<AnswersAdapter.ViewHold
             optionB.setText("B: "+b);
             optionC.setText("C: "+c);
             optionD.setText("D: "+d);
+            solucao.setText(sol);
 
 
 

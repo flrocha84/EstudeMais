@@ -7,6 +7,7 @@ public class QuestionModel {
     private String optionB;
     private String optionC;
     private String optionD;
+    private String solucao;
 
     private int correctAns;
     private int selectedAns;
@@ -16,18 +17,27 @@ public class QuestionModel {
 
 
 
-    public QuestionModel(String qID, String question, String optionA, String optionB, String optionC, String optionD, int correctAns,int selectedAns,int status, boolean isBookmarked) {
+    public QuestionModel(String qID, String question, String optionA, String optionB, String optionC, String optionD,String solucao, int correctAns,int selectedAns,int status, boolean isBookmarked) {
         this.qID = qID;
         this.question = question;
         this.optionA = optionA;
         this.optionB = optionB;
         this.optionC = optionC;
         this.optionD = optionD;
+        this.solucao = solucao;
         this.correctAns = correctAns;
         this.selectedAns=selectedAns;
         this.status=status;
         this.isBookmarked=isBookmarked;
 
+    }
+
+    public String getSolucao() {
+        return solucao;
+    }
+
+    public void setSolucao(String solucao) {
+        this.solucao = solucao;
     }
 
     public String getqID() {
